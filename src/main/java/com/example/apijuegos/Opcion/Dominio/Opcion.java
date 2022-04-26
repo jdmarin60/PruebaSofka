@@ -14,7 +14,7 @@ import java.util.Objects;
 @Setter
 @ToString
 @Builder(toBuilder = true)
-@Table(name = "premios")
+@Table(name = "opciones")
 public class Opcion implements Serializable {
 
 	@Id
@@ -22,7 +22,7 @@ public class Opcion implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private Long valor;
+	private String nombre;
 	/*
 	 */
 	private static final long serialVersionUID = 1L;

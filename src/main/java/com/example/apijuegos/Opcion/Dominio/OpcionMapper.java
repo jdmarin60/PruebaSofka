@@ -14,7 +14,7 @@ public class OpcionMapper {
 	public OpcionModel premioEntitytoModel (Opcion opcion) {
 		OpcionModel opcionModel = OpcionModel.builder()
 				.id(opcion.getId())
-				.valor(opcion.getValor())
+				.nombre(opcion.getNombre())
 				.build();
 		return opcionModel;
 	}
@@ -22,7 +22,7 @@ public class OpcionMapper {
 	public Opcion premioModeltoEntity (OpcionModel opcionModel) {
 		Opcion opcion = Opcion.builder()
 				.id(opcionModel.getId())
-				.valor(opcionModel.getValor())
+				.nombre(opcionModel.getNombre())
 				.build();
 		return opcion;
 	}
@@ -30,7 +30,7 @@ public class OpcionMapper {
 	public OpcionModel premioDTOtoModel (OpcionDTO opcionDTO) {
 		OpcionModel opcionModel = OpcionModel.builder()
 				.id(opcionDTO.getId())
-				.valor(opcionDTO.getValor())
+				.nombre(opcionDTO.getNombre())
 				.build();
 		return opcionModel;
 	}
@@ -38,7 +38,7 @@ public class OpcionMapper {
 	public OpcionDTO premioEntitytoDTO (Opcion opcion) {
 		OpcionDTO opcionDTO = OpcionDTO.builder()
 				.id(opcion.getId())
-				.valor(opcion.getValor())
+				.nombre(opcion.getNombre())
 				.build();
 		return opcionDTO;
 	}
@@ -46,7 +46,7 @@ public class OpcionMapper {
 	public OpcionDTO premioModeltoDTO (OpcionModel opcionModel) {
 		OpcionDTO opcionDTO = OpcionDTO.builder()
 				.id(opcionModel.getId())
-				.valor(opcionModel.getValor())
+				.nombre(opcionModel.getNombre())
 				.build();
 		return opcionDTO;
 	}
@@ -54,7 +54,7 @@ public class OpcionMapper {
 	public Opcion premioDTOtoEntity (OpcionDTO opcionDTO) {
 		Opcion opcion = Opcion.builder()
 				.id(opcionDTO.getId())
-				.valor(opcionDTO.getValor())
+				.nombre(opcionDTO.getNombre())
 				.build();
 		return opcion;
 	}
