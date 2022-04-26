@@ -13,7 +13,6 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
 @Builder(toBuilder = true)
 @Table(name = "preguntas")
 public class Pregunta implements Serializable {
