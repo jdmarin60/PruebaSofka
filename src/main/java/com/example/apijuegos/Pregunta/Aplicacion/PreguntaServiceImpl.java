@@ -28,8 +28,6 @@ public class PreguntaServiceImpl implements PreguntaService {
 		pregunta = preguntaRepository.save(pregunta);
 		return preguntaMapper.preguntaEntitytoModel(pregunta);
 	}
-	
-	
 
 	@Override
 	public PreguntaModel update(PreguntaDTO preguntaDTO, Long id) throws PreguntaImplException {
