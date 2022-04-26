@@ -1,4 +1,4 @@
-package com.example.apijuegos.Opcion.Infraestructura.errors;
+package com.example.apijuegos.Common.errors;
 
 public class BadRequestAlertException extends Exception {
 
