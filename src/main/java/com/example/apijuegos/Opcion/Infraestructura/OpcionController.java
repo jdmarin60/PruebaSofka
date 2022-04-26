@@ -51,7 +51,8 @@ public class OpcionController {
 	
 	@DeleteMapping("/opciones/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void borrarOpcion (@PathVariable Long id) throws OpcionImplException {
+	public ResponseEntity<HttpStatus> borrarOpcion (@PathVariable Long id) throws OpcionImplException {
 		opcionService.deleteById(id);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 }

@@ -41,7 +41,7 @@ public class OpcionServiceImpl implements OpcionService {
 	@Override
 	public void deleteById(Long id) {
 		// TODO Auto-generated method stub
-		
+		opcionRepository.deleteById(id);
 	}
 
 	@Override
