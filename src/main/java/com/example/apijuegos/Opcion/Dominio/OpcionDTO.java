@@ -10,6 +10,5 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder(toBuilder = true)
 public class OpcionDTO {
-	private Long id;
 	private String nombre;
 }
