@@ -4,48 +4,51 @@ import com.example.apijuegos.Opcion.Aplicacion.OpcionImplException;
 import com.example.apijuegos.Opcion.Aplicacion.OpcionService;
 import com.example.apijuegos.Opcion.Dominio.OpcionDTO;
 import com.example.apijuegos.Opcion.Dominio.OpcionModel;
-import com.example.apijuegos.Opcion.Infraestructura.errors.BadRequestAlertException;
+import com.example.apijuegos.Common.errors.BadRequestAlertException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
+@CrossOrigin(origins = "*")
 public class OpcionController {
 	
 	@Autowired
 	private OpcionService opcionService;
 	
 	@GetMapping("/opciones")
-	public List<OpcionModel> listarPremios() {
-		return opcionService.findAll();
+	public ResponseEntity<List<OpcionModel>> listarOpcions() {
+		List<OpcionModel> opcionModels = opcionService.findAll();
+		if (opcionModels.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<>(opcionModels, HttpStatus.OK);
 	}
 	
 	@GetMapping("/opciones/{id}")
-	public OpcionModel mostrarPremio(@PathVariable Long id) throws OpcionImplException {
+	public OpcionModel mostrarOpcion(@PathVariable Long id) throws OpcionImplException {
 		return opcionService.findById(id);
 	}
 	
 	@PostMapping("/opciones")
-	public ResponseEntity<OpcionModel> crearPremio (@RequestBody OpcionDTO opcionDTO) throws BadRequestAlertException {
+	public ResponseEntity<OpcionModel> crearOpcion (@RequestBody OpcionDTO opcionDTO) throws BadRequestAlertException {
 		OpcionModel opcionModel = opcionService.create(opcionDTO);
 		if (opcionModel == null) throw new BadRequestAlertException(BadRequestAlertException.ENTIDAD_NO_ENCONTRADO);
 		return new ResponseEntity<>(opcionModel, HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/opciones/{id}")
-	public OpcionModel updatePremio (@RequestBody OpcionDTO opcionDTO, @PathVariable Long id) throws OpcionImplException {
+	public OpcionModel updateOpcion (@RequestBody OpcionDTO opcionDTO, @PathVariable Long id) throws OpcionImplException {
 		return opcionService.update(opcionDTO, id);
 	}
 	
 	@DeleteMapping("/opciones/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void borrarPremio (@PathVariable Long id) throws OpcionImplException {
+	public void borrarOpcion (@PathVariable Long id) throws OpcionImplException {
 		opcionService.deleteById(id);
 	}
 }
