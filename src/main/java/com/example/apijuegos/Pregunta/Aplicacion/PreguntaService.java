@@ -9,11 +9,11 @@ public interface PreguntaService {
 	
 	public List<PreguntaModel> findAll();
 	
-	public PreguntaModel save(PreguntaModel PreguntaModel);
+	public PreguntaModel save(PreguntaModel preguntaModel);
 	
-	public PreguntaModel create(PreguntaDTO PreguntaDTO);
+	public PreguntaModel create(PreguntaDTO preguntaDTO);
 	
-	public PreguntaModel update(PreguntaDTO PreguntaDTO, Long id) throws PreguntaImplException;
+	public PreguntaModel update(PreguntaDTO preguntaDTO, Long id) throws PreguntaImplException;
 	
 	public void deleteById(Long id) throws PreguntaImplException;
 

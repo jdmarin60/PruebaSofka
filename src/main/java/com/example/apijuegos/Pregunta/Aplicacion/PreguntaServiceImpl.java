@@ -32,7 +32,7 @@ public class PreguntaServiceImpl implements PreguntaService {
 	
 
 	@Override
-	public PreguntaModel update(PreguntaDTO PreguntaDTO, Long id) throws PreguntaImplException {
+	public PreguntaModel update(PreguntaDTO preguntaDTO, Long id) throws PreguntaImplException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -50,7 +50,7 @@ public class PreguntaServiceImpl implements PreguntaService {
 	}
 
 	@Override
-	public PreguntaModel create(PreguntaDTO PreguntaDTO) {
+	public PreguntaModel create(PreguntaDTO preguntaDTO) {
 		// TODO Auto-generated method stub
 		return null;
 	}
