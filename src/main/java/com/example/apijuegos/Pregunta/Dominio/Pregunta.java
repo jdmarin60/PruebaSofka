@@ -21,7 +21,7 @@ public class Pregunta implements Serializable {
 	@Id
 	@Column(name = "id_pregunta")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 	
 	@Column(name = "telefono", length = 20, nullable = false)
 	private Long telefono;
