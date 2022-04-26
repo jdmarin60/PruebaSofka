@@ -4,8 +4,10 @@ import com.example.apijuegos.Opcion.Aplicacion.OpcionImplException;
 import com.example.apijuegos.Opcion.Aplicacion.OpcionService;
 import com.example.apijuegos.Opcion.Dominio.OpcionDTO;
 import com.example.apijuegos.Opcion.Dominio.OpcionModel;
+import com.example.apijuegos.Opcion.Infraestructura.errors.BadRequestAlertException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,9 +32,10 @@ public class OpcionController {
 	}
 	
 	@PostMapping("/opciones")
-	@ResponseStatus(HttpStatus.CREATED)
-	public OpcionModel crearPremio (@RequestBody OpcionDTO opcionDTO) {
-		return opcionService.create(opcionDTO);
+	public ResponseEntity<OpcionModel> crearPremio (@RequestBody OpcionDTO opcionDTO) throws BadRequestAlertException {
+		OpcionModel opcionModel = opcionService.create(opcionDTO);
+		if (opcionModel == null) throw new BadRequestAlertException(BadRequestAlertException.ENTIDAD_NO_ENCONTRADO);
+		return new ResponseEntity<>(opcionModel, HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/opciones/{id}")

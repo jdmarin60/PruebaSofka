@@ -18,15 +18,15 @@ public class OpcionServiceImpl implements OpcionService {
 	@Override
 	public List<OpcionModel> findAll() {
 		List<Opcion> opciones = opcionRepository.findAll();
-		return opcionMapper.listpremiosEntityToModel(opciones);
+		return opcionMapper.listopcionsEntityToModel(opciones);
 	}
 
 	@Override
 	public OpcionModel save(OpcionModel opcionModel) {
 		// TODO Auto-generated method stub
-		Opcion opcion = opcionMapper.premioModeltoEntity(opcionModel);
+		Opcion opcion = opcionMapper.opcionModeltoEntity(opcionModel);
 		opcion = opcionRepository.save(opcion);
-		return opcionMapper.premioEntitytoModel(opcion);
+		return opcionMapper.opcionEntitytoModel(opcion);
 	}
 
 	@Override
@@ -50,6 +50,7 @@ public class OpcionServiceImpl implements OpcionService {
 	@Override
 	public OpcionModel create(OpcionDTO opcionDTO) {
 		// TODO Auto-generated method stub
-		return null;
+		OpcionModel opcionModel = opcionMapper.opcionDTOtoModel(opcionDTO);
+		return save(opcionModel);
 	}
 }
