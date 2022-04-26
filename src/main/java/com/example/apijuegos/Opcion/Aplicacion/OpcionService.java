@@ -11,7 +11,7 @@ public interface OpcionService {
 	
 	public OpcionModel save(OpcionModel opcionModel);
 	
-	public OpcionModel create(OpcionDTO opcionDTO);
+	public OpcionModel create(OpcionDTO opcionDTO) throws OpcionImplException;
 	
 	public OpcionModel update(OpcionDTO opcionDTO, Long id) throws OpcionImplException;
 	
