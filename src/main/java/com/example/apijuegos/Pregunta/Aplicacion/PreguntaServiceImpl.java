@@ -10,23 +10,23 @@ import java.util.List;
 public class PreguntaServiceImpl implements PreguntaService {
 
 	@Autowired
-	private PreguntaRepository PreguntaRepository;
+	private PreguntaRepository preguntaRepository;
 	
 	@Autowired
-	private PreguntaMapper PreguntaMapper;
+	private PreguntaMapper preguntaMapper;
 
 	@Override
 	public List<PreguntaModel> findAll() {
-		List<Pregunta> Preguntas = PreguntaRepository.findAll();
-		return PreguntaMapper.listpreguntasEntityToModel(Preguntas);
+		List<Pregunta> preguntas = preguntaRepository.findAll();
+		return preguntaMapper.listpreguntasEntityToModel(preguntas);
 	}
 
 	@Override
-	public PreguntaModel save(PreguntaModel PreguntaModel) {
+	public PreguntaModel save(PreguntaModel preguntaModel) {
 		// TODO Auto-generated method stub
-		Pregunta Pregunta = PreguntaMapper.preguntaModeltoEntity(PreguntaModel);
-		Pregunta = PreguntaRepository.save(Pregunta); 
-		return PreguntaMapper.preguntaEntitytoModel(Pregunta);
+		Pregunta pregunta = preguntaMapper.preguntaModeltoEntity(preguntaModel);
+		pregunta = preguntaRepository.save(pregunta);
+		return preguntaMapper.preguntaEntitytoModel(pregunta);
 	}
 	
 	
