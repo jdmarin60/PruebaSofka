@@ -13,7 +13,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@Builder(toBuilder = true)
+@Builder
 @Table(name = "opciones")
 public class Opcion implements Serializable {
 

@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Builder(toBuilder = true)
+@Builder
 public class OpcionModel {
 	private Long id;
 	private String nombre;

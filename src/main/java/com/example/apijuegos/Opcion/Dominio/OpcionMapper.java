@@ -10,16 +10,23 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @Service
 public class OpcionMapper {
-	
-	public OpcionModel premioEntitytoModel (Opcion opcion) {
+
+	public OpcionModel opcionEntitytoModel (Opcion opcion) {
 		OpcionModel opcionModel = OpcionModel.builder()
 				.id(opcion.getId())
 				.nombre(opcion.getNombre())
 				.build();
 		return opcionModel;
 	}
-	
-	public Opcion premioModeltoEntity (OpcionModel opcionModel) {
+
+	public OpcionModel opcionDTOtoModel (OpcionDTO opcionDTO) {
+		OpcionModel opcionModel = OpcionModel.builder()
+				.nombre(opcionDTO.getNombre())
+				.build();
+		return opcionModel;
+	}
+
+	public Opcion opcionModeltoEntity (OpcionModel opcionModel) {
 		Opcion opcion = Opcion.builder()
 				.id(opcionModel.getId())
 				.nombre(opcionModel.getNombre())
@@ -27,17 +34,17 @@ public class OpcionMapper {
 		return opcion;
 	}
 
-	public List<OpcionModel> listpremiosEntityToModel (List<Opcion> opciones) {
+	public List<OpcionModel> listopcionsEntityToModel (List<Opcion> opciones) {
 		return opciones.stream()
 				.filter(Objects::nonNull)
-				.map(this::premioEntitytoModel)
+				.map(this::opcionEntitytoModel)
 				.collect(Collectors.toList());
 	}
 
-	public List<Opcion> listpremiosModelToEntity (List<OpcionModel> premiosModel) {
-		return premiosModel.stream()
+	public List<Opcion> listopcionsModelToEntity (List<OpcionModel> opcionsModel) {
+		return opcionsModel.stream()
 				.filter(Objects::nonNull)
-				.map(this::premioModeltoEntity)
+				.map(this::opcionModeltoEntity)
 				.collect(Collectors.toList());
 	}
 }
