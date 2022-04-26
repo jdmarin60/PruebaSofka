@@ -17,32 +17,32 @@ import java.util.List;
 public class PreguntaController {
 	
 	@Autowired
-	private PreguntaService PreguntaService;
+	private PreguntaService preguntaService;
 	
 	@GetMapping("/preguntas")
 	public List<PreguntaModel> listarPreguntas() {
-		return PreguntaService.findAll();
+		return preguntaService.findAll();
 	}
 	
 	@GetMapping("/preguntas/{id}")
 	public PreguntaModel mostrarPregunta(@PathVariable Long id) throws PreguntaImplException {
-		return PreguntaService.findById(id);
+		return preguntaService.findById(id);
 	}
 	
 	@PostMapping("/preguntas")
 	@ResponseStatus(HttpStatus.CREATED)
-	public PreguntaModel crearPregunta (@RequestBody PreguntaDTO PreguntaDTO) {
-		return PreguntaService.create(PreguntaDTO);
+	public PreguntaModel crearPregunta (@RequestBody PreguntaDTO preguntaDTO) {
+		return preguntaService.create(preguntaDTO);
 	}
 	
 	@PutMapping("/preguntas/{id}")
-	public PreguntaModel updatePregunta (@RequestBody PreguntaDTO PreguntaDTO, @PathVariable Long id) throws PreguntaImplException {
-		return PreguntaService.update(PreguntaDTO, id);
+	public PreguntaModel updatePregunta (@RequestBody PreguntaDTO preguntaDTO, @PathVariable Long id) throws PreguntaImplException {
+		return preguntaService.update(preguntaDTO, id);
 	}
 	
 	@DeleteMapping("/preguntas/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void borrarPregunta (@PathVariable Long id) throws PreguntaImplException {
-		PreguntaService.deleteById(id);
+		preguntaService.deleteById(id);
 	}
 }
