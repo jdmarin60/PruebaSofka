@@ -3,6 +3,7 @@ package com.example.apijuegos.Opcion.Aplicacion;
 public class OpcionImplException extends Exception {
 
 	public static final String ID_NO_ENCONTRADO = "Id no encontrado";
+	public static final String ENTIDAD_NO_ENCONTRADA = "Entidad no encontrada";
 	
 	public OpcionImplException(String message) {
 		super(message);

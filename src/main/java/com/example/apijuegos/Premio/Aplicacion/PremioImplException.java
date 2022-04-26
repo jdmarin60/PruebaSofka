@@ -3,6 +3,7 @@ package com.example.apijuegos.Premio.Aplicacion;
 public class PremioImplException extends Exception {
 
 	public static final String ID_NO_ENCONTRADO = "Id no encontrado";
+	public static final String ENTIDAD_NO_ENCONTRADA = "Entidad no encontrada";
 	
 	public PremioImplException(String message) {
 		super(message);
