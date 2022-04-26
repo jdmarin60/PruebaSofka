@@ -4,7 +4,6 @@ import com.example.apijuegos.Opcion.Aplicacion.OpcionImplException;
 import com.example.apijuegos.Opcion.Aplicacion.OpcionService;
 import com.example.apijuegos.Opcion.Dominio.OpcionDTO;
 import com.example.apijuegos.Opcion.Dominio.OpcionModel;
-import com.example.apijuegos.Common.errors.BadRequestAlertException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,20 +29,24 @@ public class OpcionController {
 	}
 	
 	@GetMapping("/opciones/{id}")
-	public OpcionModel mostrarOpcion(@PathVariable Long id) throws OpcionImplException {
-		return opcionService.findById(id);
+	public ResponseEntity<OpcionModel> mostrarOpcion(@PathVariable Long id) throws OpcionImplException {
+		OpcionModel opcionModel = opcionService.findById(id);
+		if (opcionModel == null) throw new OpcionImplException(OpcionImplException.ENTIDAD_NO_ENCONTRADA);
+		return new ResponseEntity<>(opcionModel, HttpStatus.OK);
 	}
 	
 	@PostMapping("/opciones")
-	public ResponseEntity<OpcionModel> crearOpcion (@RequestBody OpcionDTO opcionDTO) throws BadRequestAlertException {
+	public ResponseEntity<OpcionModel> crearOpcion (@RequestBody OpcionDTO opcionDTO) throws OpcionImplException {
 		OpcionModel opcionModel = opcionService.create(opcionDTO);
-		if (opcionModel == null) throw new BadRequestAlertException(BadRequestAlertException.ENTIDAD_NO_ENCONTRADO);
+		if (opcionModel == null) throw new OpcionImplException(OpcionImplException.ENTIDAD_NO_ENCONTRADA);
 		return new ResponseEntity<>(opcionModel, HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/opciones/{id}")
-	public OpcionModel updateOpcion (@RequestBody OpcionDTO opcionDTO, @PathVariable Long id) throws OpcionImplException {
-		return opcionService.update(opcionDTO, id);
+	public ResponseEntity<OpcionModel> updateOpcion (@RequestBody OpcionDTO opcionDTO, @PathVariable Long id) throws OpcionImplException {
+		OpcionModel opcionModel = opcionService.update(opcionDTO, id);
+		if (opcionModel == null) throw new OpcionImplException(OpcionImplException.ENTIDAD_NO_ENCONTRADA);
+		return new ResponseEntity<>(opcionModel, HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/opciones/{id}")

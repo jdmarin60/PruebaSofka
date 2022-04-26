@@ -32,7 +32,10 @@ public class OpcionServiceImpl implements OpcionService {
 	@Override
 	public OpcionModel update(OpcionDTO opcionDTO, Long id) throws OpcionImplException {
 		// TODO Auto-generated method stub
-		return null;
+		Opcion opcion = opcionRepository.getById(id);
+		OpcionModel opcionModel = opcionMapper.opcionEntitytoModel(opcion);
+		opcionModel.setNombre(opcionDTO.getNombre());
+		return save(opcionModel);
 	}
 
 	@Override
@@ -44,11 +47,12 @@ public class OpcionServiceImpl implements OpcionService {
 	@Override
 	public OpcionModel findById(Long id) throws OpcionImplException {
 		// TODO Auto-generated method stub
-		return null;
+		Opcion opcion = opcionRepository.getById(id);
+		return opcionMapper.opcionEntitytoModel(opcion);
 	}
 
 	@Override
-	public OpcionModel create(OpcionDTO opcionDTO) {
+	public OpcionModel create(OpcionDTO opcionDTO) throws OpcionImplException {
 		// TODO Auto-generated method stub
 		OpcionModel opcionModel = opcionMapper.opcionDTOtoModel(opcionDTO);
 		return save(opcionModel);
