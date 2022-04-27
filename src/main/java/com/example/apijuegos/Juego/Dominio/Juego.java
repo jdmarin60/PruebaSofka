@@ -1,5 +1,9 @@
 package com.example.apijuegos.Juego.Dominio;
 
+import com.example.apijuegos.Categoria.Dominio.Categoria;
+import com.example.apijuegos.Opcion.Dominio.Opcion;
+import com.example.apijuegos.Pregunta.Dominio.Pregunta;
+import com.example.apijuegos.Ronda.Dominio.Ronda;
 import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.CreationTimestamp;
@@ -8,7 +12,10 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @AllArgsConstructor
@@ -25,7 +32,15 @@ public class Juego implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private Long valor;
+	@ManyToMany
+	@JoinTable(
+			name = "juego_pregunta",
+			joinColumns = @JoinColumn(name = "id_juego"),
+			inverseJoinColumns = @JoinColumn(name = "id_pregunta"))
+	private Set<Pregunta> preguntas = new HashSet<>();
+
+	@ManyToMany(mappedBy = "juegos")
+	private Collection<Ronda> rondas;
 
 	@CreationTimestamp
 	@Column(updatable = false)
@@ -48,5 +63,13 @@ public class Juego implements Serializable {
 	@Override
 	public int hashCode() {
 		return getClass().hashCode();
+	}
+
+	public Collection<Ronda> getRondas() {
+		return rondas;
+	}
+
+	public void setRondas(Collection<Ronda> rondas) {
+		this.rondas = rondas;
 	}
 }

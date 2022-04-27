@@ -29,6 +29,9 @@ public class Opcion implements Serializable {
 
 	private String nombre;
 
+	@ManyToMany(mappedBy = "opciones")
+	private Collection<Pregunta> preguntas;
+
 	@CreationTimestamp
 	@Column(updatable = false)
 	Timestamp dateCreated;
@@ -51,10 +54,7 @@ public class Opcion implements Serializable {
 	public int hashCode() {
 		return getClass().hashCode();
 	}
-
-	@ManyToMany(mappedBy = "opciones")
-	private Collection<Pregunta> preguntas;
-
+	
 	public Collection<Pregunta> getPreguntas() {
 		return preguntas;
 	}

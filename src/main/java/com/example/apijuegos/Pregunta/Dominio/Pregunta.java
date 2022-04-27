@@ -1,6 +1,7 @@
 package com.example.apijuegos.Pregunta.Dominio;
 
 import com.example.apijuegos.Categoria.Dominio.Categoria;
+import com.example.apijuegos.Juego.Dominio.Juego;
 import com.example.apijuegos.Opcion.Dominio.Opcion;
 import lombok.*;
 import org.hibernate.Hibernate;
@@ -10,6 +11,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -42,6 +44,9 @@ public class Pregunta implements Serializable {
 	@JoinColumn(name = "id_categoria")
 	private Categoria categoria;
 
+	@ManyToMany(mappedBy = "preguntas")
+	private Collection<Juego> juegos;
+
 	@CreationTimestamp
 	@Column(updatable = false)
 	private Timestamp dateCreated;
@@ -65,5 +70,13 @@ public class Pregunta implements Serializable {
 	@Override
 	public int hashCode() {
 		return getClass().hashCode();
+	}
+
+	public Collection<Juego> getJuegos() {
+		return juegos;
+	}
+
+	public void setJuegos(Collection<Juego> juegos) {
+		this.juegos = juegos;
 	}
 }
