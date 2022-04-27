@@ -1,5 +1,7 @@
 package com.example.apijuegos.Premio.Aplicacion;
 
+import com.example.apijuegos.Premio.Aplicacion.PremioImplException;
+import com.example.apijuegos.Premio.Aplicacion.PremioService;
 import com.example.apijuegos.Premio.Dominio.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,8 +19,8 @@ public class PremioServiceImpl implements PremioService {
 
 	@Override
 	public List<PremioModel> findAll() {
-		List<Premio> premios = premioRepository.findAll();
-		return premioMapper.listpremiosEntityToModel(premios);
+		List<Premio> premioes = premioRepository.findAll();
+		return premioMapper.listpremiosEntityToModel(premioes);
 	}
 
 	@Override
@@ -32,24 +34,29 @@ public class PremioServiceImpl implements PremioService {
 	@Override
 	public PremioModel update(PremioDTO premioDTO, Long id) throws PremioImplException {
 		// TODO Auto-generated method stub
-		return null;
+		Premio premio = premioRepository.getById(id);
+		PremioModel premioModel = premioMapper.premioEntitytoModel(premio);
+		premioModel.setValor(premioDTO.getValor());
+		return save(premioModel);
 	}
 
 	@Override
 	public void deleteById(Long id) {
 		// TODO Auto-generated method stub
-		
+		premioRepository.deleteById(id);
 	}
 
 	@Override
 	public PremioModel findById(Long id) throws PremioImplException {
 		// TODO Auto-generated method stub
-		return null;
+		Premio premio = premioRepository.getById(id);
+		return premioMapper.premioEntitytoModel(premio);
 	}
 
 	@Override
-	public PremioModel create(PremioDTO premioDTO) {
+	public PremioModel create(PremioDTO premioDTO) throws PremioImplException {
 		// TODO Auto-generated method stub
-		return null;
+		PremioModel premioModel = premioMapper.premioDTOtoModel(premioDTO);
+		return save(premioModel);
 	}
 }

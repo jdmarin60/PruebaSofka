@@ -11,7 +11,7 @@ public interface PremioService {
 	
 	public PremioModel save(PremioModel premioModel);
 	
-	public PremioModel create(PremioDTO premioDTO);
+	public PremioModel create(PremioDTO premioDTO) throws PremioImplException;
 	
 	public PremioModel update(PremioDTO premioDTO, Long id) throws PremioImplException;
 	
