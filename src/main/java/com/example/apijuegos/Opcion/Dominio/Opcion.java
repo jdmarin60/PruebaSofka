@@ -2,9 +2,12 @@ package com.example.apijuegos.Opcion.Dominio;
 
 import lombok.*;
 import org.hibernate.Hibernate;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
@@ -18,11 +21,18 @@ import java.util.Objects;
 public class Opcion implements Serializable {
 
 	@Id
-	@Column(name = "id_premio")
+	@Column(name = "id_opcion")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	private String nombre;
+
+	@CreationTimestamp
+	@Column(updatable = false)
+	Timestamp dateCreated;
+
+	@UpdateTimestamp
+	Timestamp lastModified;
 	/*
 	 */
 	private static final long serialVersionUID = 1L;

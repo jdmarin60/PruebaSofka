@@ -2,9 +2,12 @@ package com.example.apijuegos.Pregunta.Dominio;
 
 import lombok.*;
 import org.hibernate.Hibernate;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
@@ -27,7 +30,13 @@ public class Pregunta implements Serializable {
 
 	@Column(name = "nombre", length = 20, nullable = false)
 	private String nombre;
-	
+
+	@CreationTimestamp
+	@Column(updatable = false)
+	private Timestamp dateCreated;
+
+	@UpdateTimestamp
+	private Timestamp lastModified;
 	/*
 	 */
 	private static final long serialVersionUID = 1L;
