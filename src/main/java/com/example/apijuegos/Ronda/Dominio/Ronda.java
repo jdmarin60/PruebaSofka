@@ -1,5 +1,6 @@
 package com.example.apijuegos.Ronda.Dominio;
 
+import com.example.apijuegos.Premio.Dominio.Premio;
 import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.CreationTimestamp;
@@ -25,7 +26,10 @@ public class Ronda implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private Long valor;
+	private String nombre;
+	@OneToOne
+	@JoinColumn(name = "id_premio")
+	private Premio premio;
 
 	@CreationTimestamp
 	@Column(updatable = false)

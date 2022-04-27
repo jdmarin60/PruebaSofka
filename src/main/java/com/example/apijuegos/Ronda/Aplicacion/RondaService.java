@@ -11,7 +11,7 @@ public interface RondaService {
 	
 	public RondaModel save(RondaModel rondaModel);
 	
-	public RondaModel create(RondaDTO rondaDTO);
+	public RondaModel create(RondaDTO rondaDTO) throws RondaImplException;
 	
 	public RondaModel update(RondaDTO rondaDTO, Long id) throws RondaImplException;
 	

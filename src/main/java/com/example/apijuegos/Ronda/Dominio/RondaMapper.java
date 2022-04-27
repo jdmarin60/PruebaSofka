@@ -1,5 +1,8 @@
 package com.example.apijuegos.Ronda.Dominio;
 
+import com.example.apijuegos.Ronda.Dominio.Ronda;
+import com.example.apijuegos.Ronda.Dominio.RondaDTO;
+import com.example.apijuegos.Ronda.Dominio.RondaModel;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,94 +13,44 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @Service
 public class RondaMapper {
-	
-	public RondaModel premioEntitytoModel (Ronda ronda) {
+
+	public RondaModel rondaEntitytoModel (Ronda ronda) {
 		RondaModel rondaModel = RondaModel.builder()
 				.id(ronda.getId())
-				.valor(ronda.getValor())
+				.nombre(ronda.getNombre())
+				.premio(ronda.getPremio())
 				.build();
 		return rondaModel;
 	}
-	
-	public Ronda premioModeltoEntity (RondaModel rondaModel) {
-		Ronda ronda = Ronda.builder()
-				.id(rondaModel.getId())
-				.valor(rondaModel.getValor())
-				.build();
-		return ronda;
-	}
-	
-	public RondaModel premioDTOtoModel (RondaDTO rondaDTO) {
+
+	public RondaModel rondaDTOtoModel (RondaDTO rondaDTO) {
 		RondaModel rondaModel = RondaModel.builder()
-				.id(rondaDTO.getId())
-				.valor(rondaDTO.getValor())
+				.nombre(rondaDTO.getNombre())
+				.premio(rondaDTO.getPremio())
 				.build();
 		return rondaModel;
 	}
-	
-	public RondaDTO premioEntitytoDTO (Ronda ronda) {
-		RondaDTO rondaDTO = RondaDTO.builder()
-				.id(ronda.getId())
-				.valor(ronda.getValor())
-				.build();
-		return rondaDTO;
-	}
-	
-	public RondaDTO premioModeltoDTO (RondaModel rondaModel) {
-		RondaDTO rondaDTO = RondaDTO.builder()
-				.id(rondaModel.getId())
-				.valor(rondaModel.getValor())
-				.build();
-		return rondaDTO;
-	}
-	
-	public Ronda premioDTOtoEntity (RondaDTO rondaDTO) {
+
+	public Ronda rondaModeltoEntity (RondaModel rondaModel) {
 		Ronda ronda = Ronda.builder()
-				.id(rondaDTO.getId())
-				.valor(rondaDTO.getValor())
+				.id(rondaModel.getId())
+				.nombre(rondaModel.getNombre())
+				.premio(rondaModel.getPremio())
 				.build();
 		return ronda;
 	}
 
-	public List<RondaModel> listpremiosEntityToModel (List<Ronda> rondas) {
-		return rondas.stream()
+	public List<RondaModel> listrondasEntityToModel (List<Ronda> rondaes) {
+		return rondaes.stream()
 				.filter(Objects::nonNull)
-				.map(this::premioEntitytoModel)
-				.collect(Collectors.toList());
-	}
-	
-	public List<RondaModel> listpremiosDTOToModel (List<RondaDTO> premiosDTO) {
-		return premiosDTO.stream()
-				.filter(Objects::nonNull)
-				.map(this::premioDTOtoModel)
+				.map(this::rondaEntitytoModel)
 				.collect(Collectors.toList());
 	}
 
-	public List<Ronda> listpremiosModelToEntity (List<RondaModel> premiosModel) {
-		return premiosModel.stream()
+	public List<Ronda> listrondasModelToEntity (List<RondaModel> rondasModel) {
+		return rondasModel.stream()
 				.filter(Objects::nonNull)
-				.map(this::premioModeltoEntity)
-				.collect(Collectors.toList());
-	}
-	
-	public List<Ronda> listpremiosDTOToEntity (List<RondaDTO> premiosDTO) {
-		return premiosDTO.stream()
-				.filter(Objects::nonNull)
-				.map(this::premioDTOtoEntity)
-				.collect(Collectors.toList());
-	}
-	
-	public List<RondaDTO> listpremiosEntityToDTO (List<Ronda> rondas) {
-		return rondas.stream()
-				.filter(Objects::nonNull)
-				.map(this::premioEntitytoDTO)
-				.collect(Collectors.toList());
-	}
-
-	public List<RondaDTO> listpremiosModelToDTO (List<RondaModel> premiosModel) {
-		return premiosModel.stream()
-				.filter(Objects::nonNull)
-				.map(this::premioModeltoDTO)
+				.map(this::rondaModeltoEntity)
 				.collect(Collectors.toList());
 	}
 }

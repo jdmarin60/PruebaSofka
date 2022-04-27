@@ -6,6 +6,7 @@ import com.example.apijuegos.Ronda.Dominio.RondaDTO;
 import com.example.apijuegos.Ronda.Dominio.RondaModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,36 +14,43 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
+@CrossOrigin(origins = "*")
 public class RondaController {
 	
 	@Autowired
 	private RondaService rondaService;
 	
 	@GetMapping("/rondas")
-	public List<RondaModel> listarRondas() {
-		return rondaService.findAll();
+	public ResponseEntity<List<RondaModel>> listarRondas() {
+		List<RondaModel> rondaModels = rondaService.findAll();
+		if (rondaModels.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<>(rondaModels, HttpStatus.OK);
 	}
 	
 	@GetMapping("/rondas/{id}")
-	public RondaModel mostrarRonda(@PathVariable Long id) throws RondaImplException {
-		return rondaService.findById(id);
+	public ResponseEntity<RondaModel> mostrarRonda(@PathVariable Long id) throws RondaImplException {
+		RondaModel rondaModel = rondaService.findById(id);
+		if (rondaModel == null) throw new RondaImplException(RondaImplException.ENTIDAD_NO_ENCONTRADA);
+		return new ResponseEntity<>(rondaModel, HttpStatus.OK);
 	}
 	
 	@PostMapping("/rondas")
-	@ResponseStatus(HttpStatus.CREATED)
-	public RondaModel crearRonda (@RequestBody RondaDTO rondaDTO) {
-		return rondaService.create(rondaDTO);
+	public ResponseEntity<RondaModel> crearRonda (@RequestBody RondaDTO rondaDTO) throws RondaImplException {
+		RondaModel rondaModel = rondaService.create(rondaDTO);
+		if (rondaModel == null) throw new RondaImplException(RondaImplException.ENTIDAD_NO_ENCONTRADA);
+		return new ResponseEntity<>(rondaModel, HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/rondas/{id}")
-	public RondaModel updateRonda (@RequestBody RondaDTO rondaDTO, @PathVariable Long id) throws RondaImplException {
-		return rondaService.update(rondaDTO, id);
+	public ResponseEntity<RondaModel> updateRonda (@RequestBody RondaDTO rondaDTO, @PathVariable Long id) throws RondaImplException {
+		RondaModel rondaModel = rondaService.update(rondaDTO, id);
+		if (rondaModel == null) throw new RondaImplException(RondaImplException.ENTIDAD_NO_ENCONTRADA);
+		return new ResponseEntity<>(rondaModel, HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/rondas/{id}")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void borrarRonda (@PathVariable Long id) throws RondaImplException {
+	public ResponseEntity<HttpStatus> borrarRonda (@PathVariable Long id) throws RondaImplException {
 		rondaService.deleteById(id);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 }

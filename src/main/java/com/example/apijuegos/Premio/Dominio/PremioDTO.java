@@ -10,6 +10,5 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder(toBuilder = true)
 public class PremioDTO {
-	private Long id;
 	private Long valor;
 }

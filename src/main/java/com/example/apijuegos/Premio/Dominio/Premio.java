@@ -1,5 +1,6 @@
 package com.example.apijuegos.Premio.Dominio;
 
+import com.example.apijuegos.Ronda.Dominio.Ronda;
 import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.CreationTimestamp;
@@ -27,6 +28,9 @@ public class Premio implements Serializable {
 
 	private Long valor;
 
+	@OneToOne(mappedBy = "premio", optional = false)
+	private Ronda ronda;
+
 	@CreationTimestamp
 	@Column(updatable = false)
 	private Timestamp dateCreated;
@@ -48,5 +52,13 @@ public class Premio implements Serializable {
 	@Override
 	public int hashCode() {
 		return getClass().hashCode();
+	}
+
+	public Ronda getRonda() {
+		return ronda;
+	}
+
+	public void setRonda(Ronda ronda) {
+		this.ronda = ronda;
 	}
 }
