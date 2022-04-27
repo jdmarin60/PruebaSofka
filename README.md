@@ -7,4 +7,4 @@ This project uses the MySQL Database
 3. Run
 4. Enjoy!
 
-Opciones, Categorias y CRUD Available!
+Opciones y Categorias CRUD Available!
