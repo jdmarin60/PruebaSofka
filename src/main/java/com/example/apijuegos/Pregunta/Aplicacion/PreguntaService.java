@@ -1,5 +1,6 @@
 package com.example.apijuegos.Pregunta.Aplicacion;
 
+import com.example.apijuegos.Opcion.Aplicacion.OpcionImplException;
 import com.example.apijuegos.Pregunta.Dominio.PreguntaDTO;
 import com.example.apijuegos.Pregunta.Dominio.PreguntaModel;
 
@@ -11,7 +12,7 @@ public interface PreguntaService {
 	
 	public PreguntaModel save(PreguntaModel preguntaModel);
 	
-	public PreguntaModel create(PreguntaDTO preguntaDTO);
+	public PreguntaModel create(PreguntaDTO preguntaDTO) throws PreguntaImplException;
 	
 	public PreguntaModel update(PreguntaDTO preguntaDTO, Long id) throws PreguntaImplException;
 	
