@@ -1,5 +1,6 @@
 package com.example.apijuegos.Opcion.Dominio;
 
+import com.example.apijuegos.Pregunta.Dominio.Pregunta;
 import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.CreationTimestamp;
@@ -8,6 +9,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -48,5 +50,16 @@ public class Opcion implements Serializable {
 	@Override
 	public int hashCode() {
 		return getClass().hashCode();
+	}
+
+	@ManyToMany(mappedBy = "opciones")
+	private Collection<Pregunta> preguntas;
+
+	public Collection<Pregunta> getPreguntas() {
+		return preguntas;
+	}
+
+	public void setPreguntas(Collection<Pregunta> preguntas) {
+		this.preguntas = preguntas;
 	}
 }

@@ -1,5 +1,6 @@
 package com.example.apijuegos.Pregunta.Dominio;
 
+import com.example.apijuegos.Opcion.Dominio.Opcion;
 import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.CreationTimestamp;
@@ -8,7 +9,9 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @AllArgsConstructor
@@ -24,12 +27,15 @@ public class Pregunta implements Serializable {
 	@Column(name = "id_pregunta")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column(name = "telefono", length = 20, nullable = false)
-	private Long telefono;
 
-	@Column(name = "nombre", length = 20, nullable = false)
-	private String nombre;
+	private String encabezado;
+
+	@ManyToMany
+	@JoinTable(
+			name = "pregunta_opcion",
+			joinColumns = @JoinColumn(name = "id_pregunta"),
+			inverseJoinColumns = @JoinColumn(name = "id_opcion"))
+	private Set<Opcion> opciones = new HashSet<>();
 
 	@CreationTimestamp
 	@Column(updatable = false)
