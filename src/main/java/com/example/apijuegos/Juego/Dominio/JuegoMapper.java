@@ -1,5 +1,8 @@
 package com.example.apijuegos.Juego.Dominio;
 
+import com.example.apijuegos.Juego.Dominio.Juego;
+import com.example.apijuegos.Juego.Dominio.JuegoDTO;
+import com.example.apijuegos.Juego.Dominio.JuegoModel;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,94 +13,44 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @Service
 public class JuegoMapper {
-	
-	public JuegoModel premioEntitytoModel (Juego juego) {
+
+	public JuegoModel juegoEntitytoModel (Juego juego) {
 		JuegoModel juegoModel = JuegoModel.builder()
 				.id(juego.getId())
-				.valor(juego.getValor())
+				.preguntas(juego.getPreguntas())
+				.rondas(juego.getRondas())
 				.build();
 		return juegoModel;
 	}
-	
-	public Juego premioModeltoEntity (JuegoModel juegoModel) {
-		Juego juego = Juego.builder()
-				.id(juegoModel.getId())
-				.valor(juegoModel.getValor())
-				.build();
-		return juego;
-	}
-	
-	public JuegoModel premioDTOtoModel (JuegoDTO juegoDTO) {
+
+	public JuegoModel juegoDTOtoModel (JuegoDTO juegoDTO) {
 		JuegoModel juegoModel = JuegoModel.builder()
-				.id(juegoDTO.getId())
-				.valor(juegoDTO.getValor())
+				.preguntas(juegoDTO.getPreguntas())
+				.rondas(juegoDTO.getRondas())
 				.build();
 		return juegoModel;
 	}
-	
-	public JuegoDTO premioEntitytoDTO (Juego juego) {
-		JuegoDTO juegoDTO = JuegoDTO.builder()
-				.id(juego.getId())
-				.valor(juego.getValor())
-				.build();
-		return juegoDTO;
-	}
-	
-	public JuegoDTO premioModeltoDTO (JuegoModel juegoModel) {
-		JuegoDTO juegoDTO = JuegoDTO.builder()
-				.id(juegoModel.getId())
-				.valor(juegoModel.getValor())
-				.build();
-		return juegoDTO;
-	}
-	
-	public Juego premioDTOtoEntity (JuegoDTO juegoDTO) {
+
+	public Juego juegoModeltoEntity (JuegoModel juegoModel) {
 		Juego juego = Juego.builder()
-				.id(juegoDTO.getId())
-				.valor(juegoDTO.getValor())
+				.id(juegoModel.getId())
+				.preguntas(juegoModel.getPreguntas())
+				.rondas(juegoModel.getRondas())
 				.build();
 		return juego;
 	}
 
-	public List<JuegoModel> listpremiosEntityToModel (List<Juego> juegos) {
-		return juegos.stream()
+	public List<JuegoModel> listjuegosEntityToModel (List<Juego> juegoes) {
+		return juegoes.stream()
 				.filter(Objects::nonNull)
-				.map(this::premioEntitytoModel)
-				.collect(Collectors.toList());
-	}
-	
-	public List<JuegoModel> listpremiosDTOToModel (List<JuegoDTO> premiosDTO) {
-		return premiosDTO.stream()
-				.filter(Objects::nonNull)
-				.map(this::premioDTOtoModel)
+				.map(this::juegoEntitytoModel)
 				.collect(Collectors.toList());
 	}
 
-	public List<Juego> listpremiosModelToEntity (List<JuegoModel> premiosModel) {
-		return premiosModel.stream()
+	public List<Juego> listjuegosModelToEntity (List<JuegoModel> juegosModel) {
+		return juegosModel.stream()
 				.filter(Objects::nonNull)
-				.map(this::premioModeltoEntity)
-				.collect(Collectors.toList());
-	}
-	
-	public List<Juego> listpremiosDTOToEntity (List<JuegoDTO> premiosDTO) {
-		return premiosDTO.stream()
-				.filter(Objects::nonNull)
-				.map(this::premioDTOtoEntity)
-				.collect(Collectors.toList());
-	}
-	
-	public List<JuegoDTO> listpremiosEntityToDTO (List<Juego> juegos) {
-		return juegos.stream()
-				.filter(Objects::nonNull)
-				.map(this::premioEntitytoDTO)
-				.collect(Collectors.toList());
-	}
-
-	public List<JuegoDTO> listpremiosModelToDTO (List<JuegoModel> premiosModel) {
-		return premiosModel.stream()
-				.filter(Objects::nonNull)
-				.map(this::premioModeltoDTO)
+				.map(this::juegoModeltoEntity)
 				.collect(Collectors.toList());
 	}
 }

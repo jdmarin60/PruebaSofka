@@ -11,7 +11,7 @@ public interface JuegoService {
 	
 	public JuegoModel save(JuegoModel juegoModel);
 	
-	public JuegoModel create(JuegoDTO juegoDTO);
+	public JuegoModel create(JuegoDTO juegoDTO) throws JuegoImplException;
 	
 	public JuegoModel update(JuegoDTO juegoDTO, Long id) throws JuegoImplException;
 	
