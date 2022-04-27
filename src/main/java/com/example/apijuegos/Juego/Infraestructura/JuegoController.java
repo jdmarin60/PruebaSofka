@@ -19,30 +19,30 @@ public class JuegoController {
 	@Autowired
 	private JuegoService juegoService;
 	
-	@GetMapping("/premios")
-	public List<JuegoModel> listarPremios() {
+	@GetMapping("/juegos")
+	public List<JuegoModel> listarJuegos() {
 		return juegoService.findAll();
 	}
 	
-	@GetMapping("/premios/{id}")
-	public JuegoModel mostrarPremio(@PathVariable Long id) throws JuegoImplException {
+	@GetMapping("/juegos/{id}")
+	public JuegoModel mostrarJuego(@PathVariable Long id) throws JuegoImplException {
 		return juegoService.findById(id);
 	}
 	
-	@PostMapping("/premios")
+	@PostMapping("/juegos")
 	@ResponseStatus(HttpStatus.CREATED)
-	public JuegoModel crearPremio (@RequestBody JuegoDTO juegoDTO) {
+	public JuegoModel crearJuego (@RequestBody JuegoDTO juegoDTO) {
 		return juegoService.create(juegoDTO);
 	}
 	
-	@PutMapping("/premios/{id}")
-	public JuegoModel updatePremio (@RequestBody JuegoDTO juegoDTO, @PathVariable Long id) throws JuegoImplException {
+	@PutMapping("/juegos/{id}")
+	public JuegoModel updateJuego (@RequestBody JuegoDTO juegoDTO, @PathVariable Long id) throws JuegoImplException {
 		return juegoService.update(juegoDTO, id);
 	}
 	
-	@DeleteMapping("/premios/{id}")
+	@DeleteMapping("/juegos/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void borrarPremio (@PathVariable Long id) throws JuegoImplException {
+	public void borrarJuego (@PathVariable Long id) throws JuegoImplException {
 		juegoService.deleteById(id);
 	}
 }

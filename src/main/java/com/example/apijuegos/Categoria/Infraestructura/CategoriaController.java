@@ -19,30 +19,30 @@ public class CategoriaController {
 	@Autowired
 	private CategoriaService categoriaService;
 	
-	@GetMapping("/premios")
-	public List<CategoriaModel> listarPremios() {
+	@GetMapping("/categorias")
+	public List<CategoriaModel> listarCategorias() {
 		return categoriaService.findAll();
 	}
 	
-	@GetMapping("/premios/{id}")
-	public CategoriaModel mostrarPremio(@PathVariable Long id) throws CategoriaImplException {
+	@GetMapping("/categorias/{id}")
+	public CategoriaModel mostrarCategoria(@PathVariable Long id) throws CategoriaImplException {
 		return categoriaService.findById(id);
 	}
 	
-	@PostMapping("/premios")
+	@PostMapping("/categorias")
 	@ResponseStatus(HttpStatus.CREATED)
-	public CategoriaModel crearPremio (@RequestBody CategoriaDTO categoriaDTO) {
+	public CategoriaModel crearCategoria (@RequestBody CategoriaDTO categoriaDTO) {
 		return categoriaService.create(categoriaDTO);
 	}
 	
-	@PutMapping("/premios/{id}")
-	public CategoriaModel updatePremio (@RequestBody CategoriaDTO categoriaDTO, @PathVariable Long id) throws CategoriaImplException {
+	@PutMapping("/categorias/{id}")
+	public CategoriaModel updateCategoria (@RequestBody CategoriaDTO categoriaDTO, @PathVariable Long id) throws CategoriaImplException {
 		return categoriaService.update(categoriaDTO, id);
 	}
 	
-	@DeleteMapping("/premios/{id}")
+	@DeleteMapping("/categorias/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void borrarPremio (@PathVariable Long id) throws CategoriaImplException {
+	public void borrarCategoria (@PathVariable Long id) throws CategoriaImplException {
 		categoriaService.deleteById(id);
 	}
 }

@@ -19,30 +19,30 @@ public class RondaController {
 	@Autowired
 	private RondaService rondaService;
 	
-	@GetMapping("/premios")
-	public List<RondaModel> listarPremios() {
+	@GetMapping("/rondas")
+	public List<RondaModel> listarRondas() {
 		return rondaService.findAll();
 	}
 	
-	@GetMapping("/premios/{id}")
-	public RondaModel mostrarPremio(@PathVariable Long id) throws RondaImplException {
+	@GetMapping("/rondas/{id}")
+	public RondaModel mostrarRonda(@PathVariable Long id) throws RondaImplException {
 		return rondaService.findById(id);
 	}
 	
-	@PostMapping("/premios")
+	@PostMapping("/rondas")
 	@ResponseStatus(HttpStatus.CREATED)
-	public RondaModel crearPremio (@RequestBody RondaDTO rondaDTO) {
+	public RondaModel crearRonda (@RequestBody RondaDTO rondaDTO) {
 		return rondaService.create(rondaDTO);
 	}
 	
-	@PutMapping("/premios/{id}")
-	public RondaModel updatePremio (@RequestBody RondaDTO rondaDTO, @PathVariable Long id) throws RondaImplException {
+	@PutMapping("/rondas/{id}")
+	public RondaModel updateRonda (@RequestBody RondaDTO rondaDTO, @PathVariable Long id) throws RondaImplException {
 		return rondaService.update(rondaDTO, id);
 	}
 	
-	@DeleteMapping("/premios/{id}")
+	@DeleteMapping("/rondas/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void borrarPremio (@PathVariable Long id) throws RondaImplException {
+	public void borrarRonda (@PathVariable Long id) throws RondaImplException {
 		rondaService.deleteById(id);
 	}
 }

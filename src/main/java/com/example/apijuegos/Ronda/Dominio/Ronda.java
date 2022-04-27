@@ -17,11 +17,11 @@ import java.util.Objects;
 @Setter
 @ToString
 @Builder(toBuilder = true)
-@Table(name = "premios")
+@Table(name = "rondas")
 public class Ronda implements Serializable {
 
 	@Id
-	@Column(name = "id_premio")
+	@Column(name = "id_ronda")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
