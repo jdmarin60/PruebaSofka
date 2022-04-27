@@ -1,5 +1,6 @@
 package com.example.apijuegos.Pregunta.Dominio;
 
+import com.example.apijuegos.Categoria.Dominio.Categoria;
 import com.example.apijuegos.Opcion.Dominio.Opcion;
 import lombok.*;
 import org.hibernate.Hibernate;
@@ -37,6 +38,10 @@ public class Pregunta implements Serializable {
 			inverseJoinColumns = @JoinColumn(name = "id_opcion"))
 	private Set<Opcion> opciones = new HashSet<>();
 
+	@ManyToOne
+	@JoinColumn(name = "id_categoria")
+	private Categoria categoria;
+
 	@CreationTimestamp
 	@Column(updatable = false)
 	private Timestamp dateCreated;
@@ -46,6 +51,8 @@ public class Pregunta implements Serializable {
 	/*
 	 */
 	private static final long serialVersionUID = 1L;
+
+
 
 	@Override
 	public boolean equals(Object o) {

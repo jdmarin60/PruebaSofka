@@ -1,5 +1,6 @@
 package com.example.apijuegos.Pregunta.Dominio;
 
+import com.example.apijuegos.Categoria.Dominio.Categoria;
 import com.example.apijuegos.Opcion.Dominio.Opcion;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,5 +17,6 @@ import java.util.Set;
 public class PreguntaModel {
 	private Long id;
 	private String encabezado;
+	private Categoria categoria;
 	private Set<Opcion> opciones = new HashSet<>();
 }

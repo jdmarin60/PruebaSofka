@@ -11,7 +11,7 @@ public interface CategoriaService {
 	
 	public CategoriaModel save(CategoriaModel categoriaModel);
 	
-	public CategoriaModel create(CategoriaDTO categoriaDTO);
+	public CategoriaModel create(CategoriaDTO categoriaDTO) throws CategoriaImplException;
 	
 	public CategoriaModel update(CategoriaDTO categoriaDTO, Long id) throws CategoriaImplException;
 	
