@@ -34,14 +34,14 @@ public class OpcionMapper {
 		return opcion;
 	}
 
-	public List<OpcionModel> listopcionsEntityToModel (List<Opcion> opciones) {
+	public List<OpcionModel> listopcionesEntityToModel (List<Opcion> opciones) {
 		return opciones.stream()
 				.filter(Objects::nonNull)
 				.map(this::opcionEntitytoModel)
 				.collect(Collectors.toList());
 	}
 
-	public List<Opcion> listopcionsModelToEntity (List<OpcionModel> opcionsModel) {
+	public List<Opcion> listopcionesModelToEntity (List<OpcionModel> opcionsModel) {
 		return opcionsModel.stream()
 				.filter(Objects::nonNull)
 				.map(this::opcionModeltoEntity)

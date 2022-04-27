@@ -18,7 +18,7 @@ public class OpcionServiceImpl implements OpcionService {
 	@Override
 	public List<OpcionModel> findAll() {
 		List<Opcion> opciones = opcionRepository.findAll();
-		return opcionMapper.listopcionsEntityToModel(opciones);
+		return opcionMapper.listopcionesEntityToModel(opciones);
 	}
 
 	@Override
